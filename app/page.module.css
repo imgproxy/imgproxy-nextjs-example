@@ -1,0 +1,32 @@
+.page {
+  --gray-rgb: 0, 0, 0;
+  --gray-alpha-200: rgba(var(--gray-rgb), 0.08);
+  --gray-alpha-100: rgba(var(--gray-rgb), 0.05);
+
+  padding: 80px;
+}
+
+@media (prefers-color-scheme: dark) {
+  .page {
+    --gray-rgb: 255, 255, 255;
+    --gray-alpha-200: rgba(var(--gray-rgb), 0.145);
+    --gray-alpha-100: rgba(var(--gray-rgb), 0.06);
+  }
+}
+
+.main {
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  align-items: start;
+  gap: 32px;
+  font-size: 18px;
+}
+
+.main code {
+  font-family: var(--font-geist-mono), monospace;
+  background: var(--gray-universal-12);
+  padding: .2em .325em;
+  border: 1px solid var(--gray-universal-36);
+  border-radius: .25em;
+}

@@ -15,6 +15,8 @@ First, you need imgproxy running. The easiest way to do this is to use Docker:
 ```bash
 docker run --rm \
   -p 8080:8080 \
+  -e IMGPROXY_ONLY_PRESETS=true \
+  -e IMGPROXY_PRESETS="w_200=w:200,w_400=w:400,w_600=w:600,w_800=w:800,q_1=q:1,q_40=q:40,q_80=q:80" \
   -it ghcr.io/imgproxy/imgproxy:latest
 ```
 

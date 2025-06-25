@@ -10,15 +10,24 @@ Read our [blog post](https://imgproxy.net/blog/image-optimization-for-nextjs-wit
 
 ## Launching the example
 
-First, you need imgproxy running. The easiest way to do this is to use Docker:
+First, create the `.env.local` file in the root of the project with the following content:
+
+```env
+IMGPROXY_KEY=736563726574
+IMGPROXY_SALT=68656C6C6F
+```
+
+Next, you need imgproxy running. The easiest way to do this is to use Docker:
 
 ```bash
 docker run --rm \
   -p 8080:8080 \
+  -e IMGPROXY_WATERMARK_DATA=$(base64 public/watermark.svg | tr -d '\n') \
+  --env-file=.env.local \
   -it ghcr.io/imgproxy/imgproxy:latest
 ```
 
-Then, run the Next.js application:
+And finally, run the Next.js application:
 
 ```bash
 # Install dependencies

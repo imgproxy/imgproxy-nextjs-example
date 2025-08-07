@@ -9,9 +9,10 @@ const imgproxyBaseUrl = process.env.NEXT_PUBLIC_IMGPROXY_BASE_URL || "http://hos
 
 export default ({ src, width, quality }: ImageLoaderProps) => {
   const fullSrc = new URL(src, imgproxyBaseUrl).toString();
+  const escapedSrc = fullSrc.replace("%", "%25").replace("?", "%3F").replace("@", "%40");
 
   const path = generateUrl(
-    { value: fullSrc, type: "plain" },
+    { value: escapedSrc, type: "plain" },
     { width, quality },
   );
 

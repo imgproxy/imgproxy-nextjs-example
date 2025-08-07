@@ -30,12 +30,13 @@ export const Imgproxy = ({
 }: ImgproxyProps) => {
   const resolvedSrc = typeof src === "string" ? src : src.src;
   const fullSrc = new URL(resolvedSrc, imgproxyBaseUrl).toString();
+  const escapedSrc = fullSrc.replace("%", "%25").replace("?", "%3F").replace("@", "%40");
 
   const imagproxyUrl = (format: Format, dpr: number) => (
     generateImageUrl({
       endpoint: imgproxyEndpoint,
       url: {
-        value: fullSrc,
+        value: escapedSrc,
         displayAs: "plain",
       },
       options: {

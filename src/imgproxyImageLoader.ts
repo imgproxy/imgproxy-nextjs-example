@@ -29,6 +29,7 @@ const findPreset = (presets: Presets, value: number): string | undefined => {
 
 export default ({ src, width, quality }: ImageLoaderProps) => {
   const fullSrc = new URL(src, imgproxyBaseUrl).toString();
+  const escapedSrc = fullSrc.replace("%", "%25").replace("?", "%3F").replace("@", "%40");
 
   const presets = [
     findPreset(presetsWidth, width),
@@ -36,7 +37,7 @@ export default ({ src, width, quality }: ImageLoaderProps) => {
   ].filter((p) => p !== undefined);
 
   const path = generateUrl(
-    { value: fullSrc, type: "plain" },
+    { value: escapedSrc, type: "plain" },
     { preset: presets },
     { onlyPresets: true },
   );
